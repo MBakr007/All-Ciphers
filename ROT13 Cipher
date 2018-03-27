@@ -1,0 +1,49 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    cout<<"Ahlan ya user ua habibi."<<endl;
+    cout<<"What do you like to do today?"<<endl;
+    cout<<"1- Cipher a message"<<endl;
+    cout<<"2- Decipher a message"<<endl;
+    cout<<"3- End"<<endl;
+    int n ;
+    cout<<">>>";
+    cin>> n;
+    string name;
+    if (n==1)
+    {
+        cout<<"Please enter the message to cipher: ";
+    }
+    else if (n==2)
+    {
+        cout<<"Please enter the message to decipher: ";
+    }
+    cin.ignore();
+    getline(cin,name);
+    for(int i=0; i<name.size(); i++)
+    {
+        if (name[i]>=97)
+        {
+            name[i]-=32;
+        }
+    }
+    for(int i=0 ; i<name.size() ; i++)
+    {
+        if (int(name[i])>77)
+        {
+            cout<<char(name[i]-13);
+        }
+        else if (char(name[i])<78)
+        {
+            cout<<char(name[i]+13);
+        }
+        else if (name[i]==char(32))
+        {
+            cout<<" ";
+        }
+    }
+        return 0;
+    }
