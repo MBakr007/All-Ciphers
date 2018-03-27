@@ -1,0 +1,174 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    cout<<"Ahlan ya user ua habibi."<<endl;
+    cout<<"What do you like to do today?"<<endl;
+    cout<<"1- Cipher a message"<<endl;
+    cout<<"2- Decipher a message"<<endl;
+    cout<<"3- End"<<endl;
+    int n,counter=0;
+    cout<<">>>";
+    cin>>n;
+    if (n==1)
+    {
+        string name;
+        string letters="abcdefghijklmnopqrstuvwxyz";
+        char arrayOfletters[]= {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+        string key, arr[26];
+        cout<<"enter the key : ";
+        cin>>key;
+        while(key.size()!=5)
+        {
+            cout<<"please enter a key with five letters : ";
+            cin>>key;
+        }
+        for (int i =0; i<key.size(); i++)
+        {
+            for(int k=0; k<key.size(); k++)
+            {
+                if(key[i]==key[k])
+                    counter++;
+            }
+            if(counter>=2)
+            {
+                cout<<"enter another key : ";
+                cin>>key;
+                counter=0;
+                i=0;
+            }
+            else
+                counter=0;
+        }
+        cout<<"please enter the message to cipher : ";
+        cin.ignore();
+        getline(cin,name);
+        int x=0;
+        for(int i=0; i<name.size(); i++)
+        {
+            if (name[i]<97)
+            {
+                name[i]+=32;
+            }
+        }
+        for(int i=0; i<5 ; i++)
+        {
+            arr[i]=key[i];
+        }
+        for(int s=0 ; s<5 ; s++)
+        {
+            for(int j=0; j<26 ; j++)
+            {
+                if(key[s]==arrayOfletters[j])
+                {
+                    arrayOfletters[j]=char(35);
+                }
+            }
+        }
+        for(int i=5; i<26 ; i++)
+        {
+            if(arrayOfletters[x]!=char(35))
+                arr[i]=arrayOfletters[x];
+            else
+                i--;
+            x++;
+        }
+        for(int i=0 ; i<name.size() ; i++)
+        {
+            for(int j=0 ; j<26 ; j++)
+            {
+                if(name[i]==letters[j])
+                {
+                    cout<<arr[j];
+                }
+            }
+            if (name[i]==char(32))
+            {
+                cout<<" ";
+            }
+        }
+
+    }
+    else if (n==2)
+    {
+        string name;
+        string letters="abcdefghijklmnopqrstuvwxyz";
+        char arrayOfletters[]= {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+        string key;
+        char arr[26];
+        cout<<"enter the key : ";
+        cin>>key;
+        while(key.size()!=5)
+        {
+            cout<<"please enter a key with five letters : ";
+            cin>>key;
+        }
+        for (int i =0; i<key.size(); i++)
+        {
+            for(int k=0; k<key.size(); k++)
+            {
+                if(key[i]==key[k])
+                    counter++;
+            }
+            if(counter>=2)
+            {
+                cout<<"enter another key : ";
+                cin>>key;
+                counter=0;
+                i=0;
+            }
+            else
+                counter=0;
+        }
+        cout<<"please enter the message to decipher : ";
+        cin.ignore();
+        getline(cin,name);
+        int x=0;
+        for(int i=0; i<name.size(); i++)
+        {
+            if (name[i]<97)
+            {
+                name[i]+=32;
+            }
+        }
+        for(int i=0; i<5 ; i++)
+        {
+            arr[i]=key[i];
+        }
+        for(int s=0 ; s<5 ; s++)
+        {
+            for(int j=0; j<26 ; j++)
+            {
+                if(key[s]==arrayOfletters[j])
+                {
+                    arrayOfletters[j]=char(35);
+                }
+            }
+        }
+        for(int i=5; i<26 ; i++)
+        {
+            if(arrayOfletters[x]!=char(35))
+                arr[i]=arrayOfletters[x];
+            else
+                i--;
+            x++;
+        }
+        for(int i=0 ; i<name.size() ; i++)
+        {
+            for(int j=0; j<26 ; j++)
+            {
+                if (arr[j]==name[i])
+                {
+                    cout<<letters[j];
+                }
+            }
+            if(name[i]==char(32))
+            {
+                cout<<" ";
+            }
+        }
+    }
+    return 0;
+}
